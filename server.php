@@ -82,12 +82,12 @@ if (isset($_POST['login_user'])) {
 if (isset($_POST['r_time'])) {
   
   // variabelen
-  $lokaal     = htmlspecialchars(mysqli_real_escape_string($db, $_POST['room']));
-  $date       = htmlspecialchars(mysqli_real_escape_string($db, $_POST['date']));
-  $time_start = htmlspecialchars(mysqli_real_escape_string($db, $_POST['time_start']));
-  $time_end   = htmlspecialchars(mysqli_real_escape_string($db, $_POST['time_end']));
-  $met_wie   = htmlspecialchars(mysqli_real_escape_string($db, $_POST['met_wie']));
-  $name       = htmlspecialchars(mysqli_real_escape_string($db, $_SESSION['username']));
+  $lokaal     = mysqli_real_escape_string($db, $_POST['room']);
+  $date       = mysqli_real_escape_string($db, $_POST['date']);
+  $time_start = mysqli_real_escape_string($db, $_POST['time_start']);
+  $time_end   = mysqli_real_escape_string($db, $_POST['time_end']);
+  $met_wie   =  mysqli_real_escape_string($db, $_POST['met_wie']);
+  $name       = mysqli_real_escape_string($db, $_SESSION['username']);
 
   // checkt of er geen errors zijn
   if (empty($lokaal))                 { array_push($reservation_errors, "Room is required");} 
@@ -114,9 +114,9 @@ if (isset($_POST['r_time'])) {
           echo "hello";
           $time_start = $db->real_escape_string($_POST['time_start']);
           $time_end = $db->real_escape_string($_POST['time_end']);
-          $name = $db->real_escape_string($_POST['name']);
+          $name = $db->real_escape_string(htmlspecialchars($_POST['name']));
           $lokaal = $db->real_escape_string($_POST['room']);
-          $met_wie = $db->real_escape_string($_POST['met_wie']);
+          $met_wie = $db->real_escape_string(htmlspecialchars($_POST['met_wie']));
           
           $liqry = $db->prepare("INSERT INTO `reservaties` (`date`, time_start, time_end , `name`, lokaal, met_wie ) VALUES (?, ?, ?, ?, ?, ? );");
           if($liqry === false) {
