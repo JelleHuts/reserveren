@@ -82,12 +82,12 @@ if (isset($_POST['login_user'])) {
 if (isset($_POST['r_time'])) {
   
   // variabelen
-  $lokaal     = mysqli_real_escape_string($db, $_POST['room']);
-  $date       = mysqli_real_escape_string($db, $_POST['date']);
-  $time_start = mysqli_real_escape_string($db, $_POST['time_start']);
-  $time_end   = mysqli_real_escape_string($db, $_POST['time_end']);
-  $met_wie   = mysqli_real_escape_string($db, $_POST['met_wie']);
-  $name       = mysqli_real_escape_string($db, $_SESSION['username']);
+  $lokaal     = htmlspecialchars(mysqli_real_escape_string($db, $_POST['room']));
+  $date       = htmlspecialchars(mysqli_real_escape_string($db, $_POST['date']));
+  $time_start = htmlspecialchars(mysqli_real_escape_string($db, $_POST['time_start']));
+  $time_end   = htmlspecialchars(mysqli_real_escape_string($db, $_POST['time_end']));
+  $met_wie   = htmlspecialchars(mysqli_real_escape_string($db, $_POST['met_wie']));
+  $name       = htmlspecialchars(mysqli_real_escape_string($db, $_SESSION['username']));
 
   // checkt of er geen errors zijn
   if (empty($lokaal))                 { array_push($reservation_errors, "Room is required");} 
