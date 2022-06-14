@@ -1,0 +1,7 @@
+.headercontainer{
+    width: 100%;
+    height: auto;
+    /* background-color: aliceblue; */
+    display: flex;
+    justify-content: space-evenly;
+}
